@@ -5,42 +5,43 @@
 {% block content %}
 <div class="browse-videos">
   {% for video in videos %}
-  <div class="media">
-    <a class="pull-left" href="{{ video.get_absolute_url }}">
-      <img class="media-object" data-src="" src="{{ video.thumbnail_image }}" alt="{{ video.title }}" />
-    </a>
-    <div class="media-body">
-      <a href="{{ video.get_absolute_url }}">
-        {% if video.is_premium %}
-        <h4 class="media-header">[Pro] {{ video.title }}</h4>
-        {% else %}
-        <h4 class="media-header">{{ video.title }}</h4>
-        {% endif %}
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail{% if video.is_premium %} premium{% endif %}">
+      <a class="video-thumb" href="{{ video.get_absolute_url }}">
+        <img src="{{ video.thumbnail_image }}" alt="{{ video.title }}" />
+        <time >{{ video.length|absolute_time }}</time>
+        <span class="glyphicon glyphicon-play-circle"></span>
       </a>
-      {{ video.description }} <small>({{ video.length|sec_to_min }} minutes)</small>
-    </div>
-  </div>
-  <hr />
+      <div class="caption">
+        <a href="{{ video.get_absolute_url }}">
+          <h4 class="media-header">{{ video.title }}</h4>
+        </a>
+        <p>{{ video.description }}</p>
+        <p><a href="{{ video.get_absolute_url }}" class="btn btn-primary btn-block btn-lg">Watch Video</a></p>
+      </div>
+    </div>{# end .thumbnail #}
+  </div>{# end .col-* #}
   {% empty %}
   You have no content
   {% endfor %}
+</div>{# end .browse-videos #}
 
-  <div class="pagination">
-    <ul>
-        {% if paginator.has_previous %}
-        <li><a href="?page={{ paginator.previous_page_number }}">Previous</a></li>
-        {% endif %}
-        {% for pg in paginator.page_range %}
-        {% if paginator.number == pg %}
-        <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
-        {% else %}
-        <li><a href="?page={{ pg }}">{{ pg }}</a></li>
-        {% endif %}
-        {% endfor %}
-        {% if paginator.has_next %}
-        <li><a href="?page={{ paginator.next_page_number }}">Next</a></li>
-        {% endif %}
-    </ul>
-  </div>
+<div class="pagination">
+  <ul>
+      {% if paginator.has_previous %}
+      <li><a href="?page={{ paginator.previous_page_number }}">Previous</a></li>
+      {% endif %}
+      {% for pg in paginator.page_range %}
+      {% if paginator.number == pg %}
+      <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
+      {% else %}
+      <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if paginator.has_next %}
+      <li><a href="?page={{ paginator.next_page_number }}">Next</a></li>
+      {% endif %}
+  </ul>
 </div>
+
 {% endblock %}

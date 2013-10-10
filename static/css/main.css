@@ -1,5 +1,11 @@
+@import 'bootstrap.min.css';
+/*@import 'bootstrap-theme.min.css';*/
+
 html, body{
     background-color: #EEEEEE;
+}
+body {
+    padding-top: 50px;
 }
 .content{
     background-color: #FFFFFF;
@@ -120,6 +126,57 @@ footer{
 
 footer p{
     text-align: center;
+}
+
+.subscribe-star{
+    color: #ffd630;
+}
+
+
+.browse-videos{
+    overflow: hidden;
+}
+
+.browse-videos .thumbnail{
+    margin-bottom: 10px;
+}
+
+.browse-videos .thumbnail.premium{
+
+}
+
+.browse-videos .video-thumb{
+    position: relative;
+    display: block;
+    background: grey;
+}
+.browse-videos .video-thumb time{
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.browse-videos .video-thumb img{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+.browse-videos .video-thumb .glyphicon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+    color: black;
+    opacity: 0.1;
+    transition: opacity 0.4s ease; 
+}
+.browse-videos .video-thumb:hover .glyphicon{
+    opacity: 0.6;
 }
 
 /****** PYGMENTS CSS *********/

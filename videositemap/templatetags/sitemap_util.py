@@ -6,3 +6,7 @@ register = template.Library()
 @register.filter
 def sec_to_min(value):
     return int(value) / 60
+
+@register.filter
+def absolute_time(value):
+	return "%s:%s" % (sec_to_min(value), (value % 60))
